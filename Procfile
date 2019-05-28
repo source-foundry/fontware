@@ -1,0 +1,1 @@
+web: gunicorn fontware.app:app --max-requests 1200 --workers=3
