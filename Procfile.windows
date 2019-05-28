@@ -1,0 +1,1 @@
+web: python fontware.app:app runserver 0.0.0.0:5000
