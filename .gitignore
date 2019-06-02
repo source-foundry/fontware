@@ -105,3 +105,6 @@ venv.bak/
 
 # macOS specific ignores
 .DS_Store
+
+# PyCharm specific ignores
+.idea
