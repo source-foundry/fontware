@@ -8,6 +8,12 @@ from fontTools.ttLib import TTFont
 
 app = Flask(__name__)
 
+# ======================================
+#
+# Configuration
+#
+# ======================================
+
 SECRET_KEY = os.environ.get("SECRET_KEY", default=None)
 if not SECRET_KEY:
     raise ValueError("No secret key set for Flask application")
@@ -26,14 +32,28 @@ dropzone = Dropzone(app)
 csrf = CSRFProtect(app)  # initialize CSRFProtect
 
 
+# ======================================
+#
+# Route Handling
+#
+# ======================================
+
+
 @app.route("/", methods=["POST", "GET"])
 def upload():
     if request.method == "POST":
         f = request.files.get("file")
         tt = TTFont(f)
+        name = tt["name"]
         # f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
     return render_template("index.html")
 
+
+# ======================================
+#
+# Error Handling
+#
+# ======================================
 
 # handle CSRF error
 @app.errorhandler(CSRFError)
